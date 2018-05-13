@@ -8,13 +8,21 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bcrypt'
-gem 'cuba'
 gem 'dotenv'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'mongoid'
 gem 'puma', '~> 3.0'
+gem 'rack'
+gem 'roda'
 gem 'simplecov'
+gem 'warden'
+
+group :development do
+  gem 'rubocop'
+end
 
 group :test do
   gem 'rspec'
   gem 'database_cleaner-mongoid', git: 'https://github.com/DatabaseCleaner/database_cleaner-mongoid'
+  gem 'database_cleaner'
 end

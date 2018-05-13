@@ -3,16 +3,16 @@ production:
     default:
       database: mongoid_production
       hosts:
-        - localhost:32772
+        - localhost:27017
 development:
   clients:
     default:
       database: mongoid_development
       hosts:
-        - localhost:32772
+        - localhost:27017
 test:
   clients:
     default:
       database: mongoid_test
       hosts:
-        - localhost:32772
+        - localhost:27017

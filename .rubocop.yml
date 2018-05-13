@@ -1,0 +1,9 @@
+Rails:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - spec/**/*
+
+Style/AndOr:
+  Enabled: false

@@ -1,18 +1,7 @@
-require 'cuba'
-require 'cuba/safe'
-require 'dotenv'
-require 'mongoid'
+require 'bcrypt'
+require 'roda'
 
-puts 'initialize'
-
-Dotenv.load
-Cuba.use(Rack::Session::Cookie, :secret => ENV['SECRET'])
-Cuba.plugin(Cuba::Safe)
-
-Mongoid.logger.level = Logger::DEBUG
-Mongo::Logger.logger.level = Logger::DEBUG
-Mongoid.load!('./mongoid.yml', :development)
-
+Dir['./config/*.rb'].each { |file| require file }
 Dir['./models/*.rb'].each { |file| require file }
 
 

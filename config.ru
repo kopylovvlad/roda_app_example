@@ -1,3 +1,3 @@
 require "./core"
 
-run Cuba
+run App.freeze.app

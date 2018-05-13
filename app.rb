@@ -1,60 +1,52 @@
-Cuba.define do
-  on get do
-    on root do
-      res.redirect '/hello'
+# frozen_string_literal: true
+
+# router is here
+class App < Roda
+  # plugins
+  plugin :head
+  plugin :json
+  plugin :all_verbs
+  plugin :environments
+  plugin :middleware
+
+  # middlewares
+  use Rack::Session::Cookie, secret: ENV['SECRET'], key: 'roda_ex'
+  use Warden::Manager do |manager|
+    manager.scope_defaults :default, strategies: [:password]
+    manager.failure_app = proc do
+      [
+        '401',
+        { 'Content-Type' => 'application/json' },
+        [{ error: 'Unauthorized' }.to_json]
+      ]
     end
-
-    on 'hello' do
-      on root do
-        res.write 'Hello world!'
-      end
-    end
-
-    on "search" do
-      on root do
-        on param("q") do |query|
-          res.write "Searched for #{query}" #=> "Searched for barbaz"
-        end
-
-        # If the params `1` is not provided, this
-        # block will get executed.
-        on true do
-          res.write "You need to provide q-params!"
-        end
-      end
-    end
-
-
   end
 
-
-  on 'users' do
-    res.write 'it is GET users'
-  end
-  #on get do
-  #end
-
-  on 'users2' do
-    on root do
-      on get do
-
-      end
-
-      on post do
-      end
+  route do |r|
+    r.root do
+      { succes: true, message: 'hello' }
     end
 
-    on ':id' do
-      on root do
-        on get do
-          res.write 'it is GET users/:id'
+    r.on 'sessions' do
+      r.is do
+        r.get do
+          { user: env['warden'].user }
         end
 
-        on patch do
+        r.post do
+          env['warden'].authenticate!
+
+          { success: true, message: 'ok', user: env['warden'].user }
         end
-        on put do
+
+        r.delete do
+          env['warden'].logout
+
+          { success: true, message: 'ok' }
         end
       end
     end
+    # add 404
+    # add 500
   end
 end

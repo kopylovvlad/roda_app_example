@@ -1,4 +1,8 @@
+require 'bundler/setup'
 require 'simplecov'
+require 'database_cleaner'
+require 'faker'
+require './init'
 
 RSpec.configure do |config|
   config.before(:suite) do

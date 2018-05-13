@@ -1,6 +1,18 @@
+## Information
+
+## Run
+```bash
+rackup
+```
+
+## Run console
+```bash
+./bin/console
+```
+
 ## TODO:
-* roda
-* add auth
+* add auth (need rspec-request test)
+* add 404 and 500 responces
 * add security
 * add register
 * add crud users
