@@ -1,0 +1,18 @@
+production:
+  clients:
+    default:
+      database: mongoid_production
+      hosts:
+        - localhost:32772
+development:
+  clients:
+    default:
+      database: mongoid_development
+      hosts:
+        - localhost:32772
+test:
+  clients:
+    default:
+      database: mongoid_test
+      hosts:
+        - localhost:32772
