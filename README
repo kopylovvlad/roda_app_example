@@ -11,12 +11,9 @@ rackup
 ```
 
 ## TODO:
-* add 404 and 500 responces
 * noauth error/redirects
 * add security
-* add register
 * add crud users
-* add console
-* add rspec
 * add likes (CRUD) another users
 * add messages
+* add likes

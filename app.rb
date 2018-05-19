@@ -11,11 +11,9 @@ class App < Roda
   plugin :middleware
   plugin :run_handler
   plugin :error_handler do |e|
-    unless ENV['RACK_ENV'] == 'test'
-      puts 'error_handler:'
-      puts e.inspect
-      puts e.backtrace
-    end
+    puts 'error_handler:'
+    puts e.inspect
+    puts e.backtrace
     { success: false, message: 'internal server error' }
   end
   plugin :not_found do |e|
@@ -44,6 +42,40 @@ class App < Roda
       { succes: true, message: 'hello' }
     end
 
+    r.is 'registration' do
+      r.post do
+        # creating new user
+        user = User.new(reg_params(r))
+        if user.valid? and user.save
+          response.status = 201
+          { success: true, user: user }
+        else
+          response.status = 400
+          { success: false, errors: user.errors }
+        end
+      end
+    end
+
+    r.is 'profiles', Hash do |search_hash|
+      # TODO:
+      # find profiles
+    end
+
+    r.is 'profiles', Integer do |profile_id|
+      # @artist = Artist[artist_id]
+      # check_access(@artist)
+
+      r.get do
+        # TODO:
+        # show profile
+      end
+
+      r.patch do
+        # TODO:
+        # update own profile
+      end
+    end
+
     r.on 'sessions' do
       r.is do
         r.get do
@@ -52,7 +84,7 @@ class App < Roda
 
         r.post do
           env['warden'].authenticate!
-
+          response.status = 201
           { success: true, message: 'ok', user: env['warden'].user }
         end
 
@@ -63,5 +95,22 @@ class App < Roda
         end
       end
     end
+  end
+
+  private
+
+  def reg_params(r)
+    {
+      first_name: r.params['first_name'],
+      last_name: r.params['last_name'],
+      email: r.params['email'],
+      height: r.params['height'],
+      weight: r.params['weight'],
+      gender: r.params['gender'],
+      city: r.params['city'],
+      birthdate: r.params['birthdate'],
+      password: r.params['password'],
+      password_confirmation: r.params['password_confirmation']
+    }
   end
 end

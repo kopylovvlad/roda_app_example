@@ -27,7 +27,7 @@ RSpec.describe 'Auth', type: :request do
         email: email,
         password: passw
       )
-      expect(response.code).to eq('200')
+      expect(response.code).to eq('201')
       expect(response.content_type).to eq('application/json')
       expect(json['success']).to eq(true)
       expect(json['user']['_id']['$oid'].present?).to eq(true)

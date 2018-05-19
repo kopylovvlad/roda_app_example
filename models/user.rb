@@ -18,7 +18,7 @@ class User
   field :gender, type: String
   field :city, type: String
   field :birthdate, type: Date
-
+  field :active, type: Boolean, default: false
 
   validates :password,
             length: { minimum: 3 },
