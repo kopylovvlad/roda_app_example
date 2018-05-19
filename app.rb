@@ -3,11 +3,28 @@
 # router is here
 class App < Roda
   # plugins
+  # https://github.com/jeremyevans/roda/tree/master/lib/roda/plugins
   plugin :head
   plugin :json
   plugin :all_verbs
   plugin :environments
   plugin :middleware
+  plugin :run_handler
+  plugin :error_handler do |e|
+    unless ENV['RACK_ENV'] == 'test'
+      puts 'error_handler:'
+      puts e.inspect
+      puts e.backtrace
+    end
+    { success: false, message: 'internal server error' }
+  end
+  plugin :not_found do |e|
+    unless ENV['RACK_ENV'] == 'test'
+      puts 'not_found:'
+      puts e.inspect
+    end
+    {}
+  end
 
   # middlewares
   use Rack::Session::Cookie, secret: ENV['SECRET'], key: 'roda_ex'
@@ -46,7 +63,5 @@ class App < Roda
         end
       end
     end
-    # add 404
-    # add 500
   end
 end
