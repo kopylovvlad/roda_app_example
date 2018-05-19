@@ -25,14 +25,17 @@ GEM
     ast (2.4.0)
     bcrypt (3.1.11)
     bson (4.3.0)
+    coderay (1.1.2)
     concurrent-ruby (1.0.5)
     database_cleaner (1.7.0)
     diff-lcs (1.3)
     docile (1.3.0)
     dotenv (2.2.1)
+    encryption (1.1.8)
     i18n (1.0.0)
       concurrent-ruby (~> 1.0)
     json (2.1.0)
+    method_source (0.9.0)
     minitest (5.11.3)
     mongo (2.5.1)
       bson (>= 4.3.0, < 5.0.0)
@@ -43,8 +46,13 @@ GEM
     parser (2.5.1.0)
       ast (~> 2.4.0)
     powerpack (0.1.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     puma (3.11.3)
     rack (2.0.5)
+    rack-test (1.0.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     roda (3.7.0)
       rack
@@ -89,10 +97,13 @@ DEPENDENCIES
   database_cleaner
   database_cleaner-mongoid!
   dotenv
+  encryption
   faker!
   mongoid
+  pry
   puma (~> 3.0)
   rack
+  rack-test
   roda
   rspec
   rubocop

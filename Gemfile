@@ -9,16 +9,19 @@ end
 
 gem 'bcrypt'
 gem 'dotenv'
+gem 'encryption'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'mongoid'
 gem 'puma', '~> 3.0'
 gem 'rack'
+gem 'rack-test'
 gem 'roda'
 gem 'simplecov'
 gem 'warden'
 
 group :development do
   gem 'rubocop'
+  gem 'pry'
 end
 
 group :test do

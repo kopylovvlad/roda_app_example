@@ -1,13 +1,16 @@
 # frozen_string_literal: true
-
 require 'warden'
 
-Warden::Manager.serialize_into_session(&:id)
-Warden::Manager.serialize_from_session { |id| User.find(id) }
+Warden::Manager.serialize_into_session do |user|
+  user.id.to_s.encrypt
+end
+Warden::Manager.serialize_from_session do |id|
+  User.find(id.decrypt)
+end
 
 Warden::Strategies.add(:password) do
   def valid?
-    params['email'] || params['password']
+    params['email'].present? and params['password'].present?
   end
 
   def authenticate!

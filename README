@@ -11,8 +11,8 @@ rackup
 ```
 
 ## TODO:
-* add auth (need rspec-request test)
 * add 404 and 500 responces
+* noauth error/redirects
 * add security
 * add register
 * add crud users
