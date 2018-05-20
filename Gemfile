@@ -25,7 +25,8 @@ group :development do
 end
 
 group :test do
-  gem 'rspec'
-  gem 'database_cleaner-mongoid', git: 'https://github.com/DatabaseCleaner/database_cleaner-mongoid'
   gem 'database_cleaner'
+  gem 'database_cleaner-mongoid', git: 'https://github.com/DatabaseCleaner/database_cleaner-mongoid'
+  gem 'factory_bot'
+  gem 'rspec'
 end

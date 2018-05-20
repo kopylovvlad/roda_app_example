@@ -8,7 +8,7 @@ module Middleware
           [
             '401',
             { 'Content-Type' => 'application/json' },
-            [{ error: 'Unauthorized' }.to_json]
+            [{ success: false, error: 'Unauthorized' }.to_json]
           ]
         end
       end

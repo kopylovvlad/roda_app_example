@@ -7,12 +7,12 @@ RSpec.describe 'Auth', type: :request do
       # prepare data
       email = Faker::Internet.free_email
       passw = 'foofoof'
-      user = User.new(
-        email: email
+      FactoryBot.create(
+        :user,
+        email: email,
+        password: passw,
+        password_confirmation: passw
       )
-      user.password = passw
-      user.password_confirmation = passw
-      user.save!
       expect(User.count).to eq(1)
 
       # check null session

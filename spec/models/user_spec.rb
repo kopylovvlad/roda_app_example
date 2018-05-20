@@ -3,7 +3,8 @@ require 'spec_helper'
 RSpec.describe 'User', type: :model do
   describe 'password case' do
     it 'should save password' do
-      user = User.new(
+      user = FactoryBot.build(
+        :user,
         email: Faker::Internet.free_email
       )
       user.password = 'foofoo'
@@ -15,12 +16,14 @@ RSpec.describe 'User', type: :model do
     end
 
     it 'should auth user' do
-      user1 = User.create!(
+      user1 = FactoryBot.create(
+        :user,
         email: Faker::Internet.free_email,
         password: 'foofoo',
         password_confirmation: 'foofoo'
       )
-      user2 = User.create!(
+      user2 = FactoryBot.create(
+        :user,
         email: Faker::Internet.free_email,
         password: 'barbar',
         password_confirmation: 'barbar'
