@@ -9,6 +9,11 @@ class User
   attr_accessor :password, :password_confirmation
   store_in collection: 'users'
 
+  scope :active, ->{ where(active: true) }
+  scope :inactive, ->{ where(active: false) }
+  scope :male, ->{ where(gender: 'male') }
+  scope :female, ->{ where(gender: 'female') }
+
   field :first_name, type: String
   field :last_name,  type: String
   field :email,      type: String
@@ -34,6 +39,46 @@ class User
   # validates :last_name, presence: true
 
   before_save :save_password
+
+  # TODO: test
+  def self.search(params = {})
+    scope = active
+
+    ['first_name', 'last_name', 'email', 'city'].each do |item|
+      next unless params[item].present?
+      scope = scope.where(item => params[item])
+    end
+
+    if params['height_from'].present?
+      scope = scope.where(height: { :$gt => params['height_from']})
+    end
+
+    if params['height_to'].present?
+      scope = scope.where(height: { :$lt => params['height_from']})
+    end
+
+    if params['weight_from'].present?
+      scope = scope.where(weight: { :$gt => params['weight_from']})
+    end
+
+    if params['weight_to'].present?
+      scope = scope.where(weight: { :$lt => params['weight_from']})
+    end
+
+    if params['gender'].present? and %w[male female].include?(params['gender'])
+      scope = scope.where(gender: params['gender'])
+    end
+
+    if params['birthdate_before'].present?
+      scope = scope.where(birthdate: { :$lte => params['birthdate_before'] })
+    end
+
+    if params['birthdate_after'].present?
+      scope = scope.where(birthdate: { :$gte => params['birthdate_after'] })
+    end
+
+    scope
+  end
 
   # rewrite it!!!
   def authenticate(example_password)

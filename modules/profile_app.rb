@@ -4,7 +4,7 @@ module ProfileApp
   def self.included(base)
     base.class_eval do
       route 'profiles' do |r|
-        env['warden'].authenticate!
+        # env['warden'].authenticate!
 
         # TODO:
         # find profiles
@@ -12,7 +12,8 @@ module ProfileApp
           r.get do
             # TODO:
             # show profile
-            {}
+            # add pagination
+            { success: true, users: User.search }
           end
         end
 
