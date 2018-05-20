@@ -10,6 +10,7 @@ class App < Roda
 
   # apps
   include RegistrationApp
+  include SessionApp
 
   route do |r|
     r.multi_route
@@ -35,26 +36,6 @@ class App < Roda
       r.patch do
         # TODO:
         # update own profile
-      end
-    end
-
-    r.on 'sessions' do
-      r.is do
-        r.get do
-          { user: env['warden'].user }
-        end
-
-        r.post do
-          env['warden'].authenticate!
-          response.status = 201
-          { success: true, message: 'ok', user: env['warden'].user }
-        end
-
-        r.delete do
-          env['warden'].logout
-
-          { success: true, message: 'ok' }
-        end
       end
     end
   end

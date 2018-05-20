@@ -9,11 +9,21 @@ class CustomRequest
 end
 
 module RequestHelper
+  include Warden::Test::Helpers
+
   def response
     ::CustomRequest.new(last_response)
   end
 
   def json
     JSON.parse(response.body)
+  end
+
+  def sign_in(resource)
+    login_as(resource)
+  end
+
+  def sign_out(resource)
+    logout(resource)
   end
 end
