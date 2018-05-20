@@ -11,6 +11,7 @@ rackup
 ```
 
 ## TODO:
+* sing_in for test
 * noauth error/redirects
 * add security
 * add crud users
