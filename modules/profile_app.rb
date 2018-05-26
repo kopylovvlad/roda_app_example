@@ -11,7 +11,7 @@ module ProfileApp
         r.is do
           # search profiles
           r.get do
-            @users = User.search(search_params(r))
+            @users = UsersSearchService.perform(search_params(r))
             @users = paginate_yeild(r, @users)
             {
               success: true,
