@@ -11,8 +11,8 @@ rackup
 ```
 
 ## TODO:
-* add likes (CRUD) another users
 * add messages
-* add likes
 * endpoints documentation
+* is all spec-file with '_spec' ?
 * rubocop fixs
+* seeds

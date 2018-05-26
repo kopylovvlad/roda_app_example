@@ -12,6 +12,7 @@ class App < Roda
   include RegistrationApp
   include SessionApp
   include ProfileApp
+  include BookmarkApp
 
   route do |r|
     r.multi_route

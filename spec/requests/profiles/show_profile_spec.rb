@@ -2,20 +2,7 @@
 require 'spec_helper'
 
 RSpec.describe 'Show Profile', type: :request do
-  describe 'guest' do
-    it 'return 401' do
-      # prepare
-      expect(User.find(999)).to eq(nil)
-
-      # action
-      get('/profiles/999')
-
-      # check
-      expect(response.code).to eq('401')
-      expect(response.content_type).to eq('application/json')
-      expect(json['error']).to eq('Unauthorized')
-    end
-  end
+  include_examples 'not_guest', '/profiles/9999', {}
 
   describe 'auth user' do
     it 'return 404 unless user exist' do

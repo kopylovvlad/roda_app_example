@@ -10,6 +10,7 @@ ENV['RACK_ENV'] = 'test'
 
 require File.expand_path '../../core.rb', __FILE__
 require File.expand_path '../helpers/request_helper.rb', __FILE__
+Dir["./spec/shared/*.rb"].sort.each { |f| require f }
 
 module RSpecMixin
   include Rack::Test::Methods

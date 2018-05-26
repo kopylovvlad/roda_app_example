@@ -2,21 +2,6 @@
 require 'spec_helper'
 
 RSpec.describe 'Update Profile', type: :request do
-  describe 'guest' do
-    it 'return 401' do
-      # prepare
-      expect(User.find(999)).to eq(nil)
-
-      # action
-      patch('/profiles/999', {})
-
-      # check
-      expect(response.code).to eq('401')
-      expect(response.content_type).to eq('application/json')
-      expect(json['error']).to eq('Unauthorized')
-    end
-  end
-
   describe 'auth user' do
     it 'can update own profile' do
       # prepare

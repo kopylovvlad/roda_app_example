@@ -2,17 +2,7 @@
 require 'spec_helper'
 
 RSpec.describe 'Index Profile', type: :request do
-  describe 'guest' do
-    it 'return 401' do
-      # action
-      get('/profiles/')
-
-      # check
-      expect(response.code).to eq('401')
-      expect(response.content_type).to eq('application/json')
-      expect(json['error']).to eq('Unauthorized')
-    end
-  end
+  include_examples 'not_guest', '/profiles', {}
 
   describe 'auth user' do
     describe 'pagination' do

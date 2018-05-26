@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-##
-# model users
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -39,6 +37,9 @@ class User
   validates :last_name, presence: true
 
   before_save :save_password
+
+  embeds_many :bookmarks
+  accepts_nested_attributes_for :bookmarks , :autosave => true
 
   def self.search(params = {})
     scope = active
@@ -83,7 +84,11 @@ class User
     scope
   end
 
-  # rewrite it!!!
+  def full_name
+    [first_name, last_name].join(' ').strip
+  end
+
+  # rewrite it to service!!!
   def authenticate(example_password)
     if BCrypt::Password.new(crypted_password) == example_password
       self
