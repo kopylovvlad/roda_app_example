@@ -23,11 +23,15 @@ RSpec.describe 'Session', type: :request do
         passw = 'foofoof'
         user1 = User.create!(
           email: email1,
+          first_name: 'test',
+          last_name: 'test',
           password: passw,
           password_confirmation: passw
         )
         user2 = User.create!(
           email: email2,
+          first_name: 'test',
+          last_name: 'test',
           password: passw,
           password_confirmation: passw
         )

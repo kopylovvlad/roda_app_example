@@ -18,3 +18,5 @@ rackup
 * add likes (CRUD) another users
 * add messages
 * add likes
+* endpoints documentation
+* rubocop fixs

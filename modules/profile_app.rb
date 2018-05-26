@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 module ProfileApp
+  include PaginationHandler
+
   def self.included(base)
     base.class_eval do
       route 'profiles' do |r|
-        # env['warden'].authenticate!
+        env['warden'].authenticate!
 
-        # TODO:
-        # find profiles
         r.is do
           r.get do
-            # TODO:
-            # show profile
-            # add pagination
-            { success: true, users: User.search }
+            @users = User.search(search_params(r))
+            @users = paginate_yeild(r, @users)
+            {
+              success: true,
+              users: @users,
+              pagination: pagination_json(@users)
+            }
           end
         end
 
@@ -43,8 +46,16 @@ module ProfileApp
 
   private
 
+  def search_params(r)
+    r.params.slice(
+      'first_name', 'last_name', 'email', 'city', 'height_after',
+      'height_before', 'weight_after', 'weight_before', 'gender',
+      'birthdate_before', 'birthdate_after'
+    )
+  end
+
   def user_params(r)
-    return r.params.slice(
+    r.params.slice(
       'first_name', 'last_name', 'email', 'height', 'weight',
       'gender', 'city', 'birthdate', 'password', 'password_confirmation'
     )

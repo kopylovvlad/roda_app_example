@@ -13,5 +13,9 @@ FactoryBot.define do
 
     password 'sdfsdfsdf'
     password_confirmation 'sdfsdfsdf'
+
+    factory :active_user do
+      active true
+    end
   end
 end
