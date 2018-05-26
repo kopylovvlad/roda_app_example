@@ -45,15 +45,6 @@ class User
     [first_name, last_name].join(' ').strip
   end
 
-  # rewrite it to service!!!
-  def authenticate(example_password)
-    if BCrypt::Password.new(crypted_password) == example_password
-      self
-    else
-      nil
-    end
-  end
-
   private
 
   def validate_gender
