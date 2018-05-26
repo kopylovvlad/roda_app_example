@@ -49,20 +49,20 @@ class User
       scope = scope.where(item => params[item])
     end
 
-    if params['height_from'].present?
-      scope = scope.where(height: { :$gt => params['height_from']})
+    if params['height_after'].present?
+      scope = scope.where(height: { :$gt => params['height_after']})
     end
 
-    if params['height_to'].present?
-      scope = scope.where(height: { :$lt => params['height_from']})
+    if params['height_before'].present?
+      scope = scope.where(height: { :$lt => params['height_before'] })
     end
 
-    if params['weight_from'].present?
-      scope = scope.where(weight: { :$gt => params['weight_from']})
+    if params['weight_after'].present?
+      scope = scope.where(weight: { '$gt' => params['weight_after']})
     end
 
-    if params['weight_to'].present?
-      scope = scope.where(weight: { :$lt => params['weight_from']})
+    if params['weight_before'].present?
+      scope = scope.where(weight: { '$lt' => params['weight_before']})
     end
 
     if params['gender'].present? and %w[male female].include?(params['gender'])
@@ -70,11 +70,15 @@ class User
     end
 
     if params['birthdate_before'].present?
-      scope = scope.where(birthdate: { :$lte => params['birthdate_before'] })
+      scope = scope.where(
+        birthdate: { :$lte => Date.parse(params['birthdate_before']) }
+      )
     end
 
     if params['birthdate_after'].present?
-      scope = scope.where(birthdate: { :$gte => params['birthdate_after'] })
+      scope = scope.where(
+        birthdate: { :$gte => Date.parse(params['birthdate_after']) }
+      )
     end
 
     scope
