@@ -19,27 +19,13 @@ class Chat
 
   private
 
-  # TODO: test
-  def self.get_chats(user1_id, user2_id)
-    Chat.where(
-      '$or' => [
-        {user1_id: user1_id, user2_id: user2_id},
-        {user1_id: user2_id, user2_id: user1_id},
-      ]
-    )
-  end
-
-  def self.get_all_for_user(user_id)
-    Chat.where('$or' => [{user1_id: user_id}, {user2_id: user_id}])
-  end
-
   def check_ids
     return if user1_id != user2_id
     errors.add(:user1_id, 'Must be uniq')
   end
 
   def is_exist?
-    chats = Chat.get_chats(user1_id, user2_id).count
+    chats = Chats::GetByUsersService.perform(user1_id, user2_id).count
 
     return if chats == 0
     errors.add(:user1_id, 'The same chat exists')

@@ -13,7 +13,7 @@ module ChatApp
           # TODO: test
           r.get do
             user_id = env['warden'].user.id_to_s
-            chats = Chat.get_all_for_user(user_id)
+            chats = Chats::GetForUserService.perform(user_id)
             items = paginate_yeild(r, chats)
             {
               success: true,
@@ -26,7 +26,9 @@ module ChatApp
         r.on :user_id do |user_id|
           r.is 'messages' do
             @current_user_id = env['warden'].user.id_to_s
-            @chat = Chat.get_chats(current_user_id, user_id).first
+            @chat = Chats::GetByUsersService
+                    .perform(current_user_id, user_id)
+                    .first
 
             r.get do
               # index chat's messages
@@ -43,20 +45,14 @@ module ChatApp
             r.post do
               # create new message
               # TODO: test
-              # TODO: to service
-              to_user_id = nil
-              if @chat.user1_id == @current_user_id
-                to_user_id = @chat.user2_id
-              elsif @chat.user2_id
-                to_user_id = @chat.user1_id
-              end
-              message = @chat
-                        .messages
-                        .new(to_user_id: to_user_id, text: r.params['text'])
-              if message.valid? and message.save
-                { success: true, message: message }
+              answer = Messages::CreatingService
+                       .new(@chat, @current_user_id, r.params['text'])
+                       .perform
+
+              if answer.success?
+                { success: true, message: answer.item }
               else
-                { success: false, errors: message.errors }
+                { success: false, errors: answer.errors }
               end
             end
 
