@@ -69,22 +69,18 @@ module ChatApp
               r.put do
                 # check all messages as viewed
                 # TODO: test
-                # to service
-                @chat.messages
-                     .where(to_user_id: @current_user_id, viewed: false)
-                     .update_all(viewed: true)
+                Messages::ViewedService
+                  .perform(@chat, @current_user_id)
                 { success: true }
               end
             end
 
-            r.is 'unviewed' do
+            r.is 'unviewed_count' do
               r.get do
                 # get unviewed messages count
                 # TODO: test
-                # to service
-                count = @chat.messages
-                       .where(to_user_id: @current_user_id, viewed: false)
-                       .count
+                count = Messages::UnviewedCountService
+                        .perform(@chat, @current_user_id)
                 { success: true, unviewed: count }
               end
             end
