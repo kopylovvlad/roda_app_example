@@ -12,7 +12,10 @@ rackup
 
 ## TODO:
 * add messages
-* endpoints documentation
+* endpoints documentation inside README
 * is all spec-file with '_spec' ?
 * rubocop fixs
 * seeds
+* test
+* post in Medium and RubyFlow
+* json optimizing like jbuilder
