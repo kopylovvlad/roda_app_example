@@ -25,7 +25,7 @@ module BookmarkApp
             user = User.find(r.params['user_id'])
             r.halt(404) unless user.present?
 
-            answer = CreateBookmarkService
+            answer = Bookmarks::CreatingService
                      .new(env['warden'].user, user)
                      .perform
             if answer.success?

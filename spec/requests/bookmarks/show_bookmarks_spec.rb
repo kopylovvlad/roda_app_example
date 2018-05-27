@@ -7,7 +7,7 @@ RSpec.describe 'Show Bookmark', type: :request do
     it 'should render bookmark' do
       # prepare
       user = FactoryBot.create(:active_user)
-      answer = CreateBookmarkService
+      answer = Bookmarks::CreatingService
                .new(user, FactoryBot.create(:active_user))
                .perform
       item_id = answer.item.id.to_s
@@ -26,7 +26,7 @@ RSpec.describe 'Show Bookmark', type: :request do
     it 'should return 404 if does not exist' do
       # prepare
       user = FactoryBot.create(:active_user)
-      answer = CreateBookmarkService
+      answer = Bookmarks::CreatingService
                .new(user, FactoryBot.create(:active_user))
                .perform
       item_id = answer.item.id.to_s
@@ -42,11 +42,11 @@ RSpec.describe 'Show Bookmark', type: :request do
     it 'should return 404 if another user' do
       # prepare
       user1 = FactoryBot.create(:active_user)
-      CreateBookmarkService
+      Bookmarks::CreatingService
                .new(user1, FactoryBot.create(:active_user))
                .perform
       user2 = FactoryBot.create(:active_user)
-      answer = CreateBookmarkService
+      answer = Bookmarks::CreatingService
               .new(user2, FactoryBot.create(:active_user))
               .perform
       item_id = answer.item.id.to_s

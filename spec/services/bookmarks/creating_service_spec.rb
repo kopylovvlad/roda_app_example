@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-RSpec.describe 'CreateBookmarkService', type: :model do
+RSpec.describe 'Bookmarks::CreatingService', type: :model do
   it 'should check users' do
     err_json = { main_user: 'must exist', another_user: 'must exist' }
 
-    answer = CreateBookmarkService.new.perform
+    answer = Bookmarks::CreatingService.new.perform
 
     expect(answer.class).to eq(ServiceAnswer)
     expect(answer.success?).to eq(false)
@@ -19,7 +19,7 @@ RSpec.describe 'CreateBookmarkService', type: :model do
     expect(user2.bookmarks.count).to eq(0)
 
     # action
-    answer = CreateBookmarkService.new(user2, user1).perform
+    answer = Bookmarks::CreatingService.new(user2, user1).perform
 
     # check
     expect(user1.bookmarks.count).to eq(0)
@@ -42,8 +42,8 @@ RSpec.describe 'CreateBookmarkService', type: :model do
     expect(user3.bookmarks.count).to eq(0)
 
     # action
-    CreateBookmarkService.new(user2, user1).perform
-    answer = CreateBookmarkService.new(user2, user3).perform
+    Bookmarks::CreatingService.new(user2, user1).perform
+    answer = Bookmarks::CreatingService.new(user2, user3).perform
 
     # check
     expect(user1.bookmarks.count).to eq(0)
@@ -61,8 +61,8 @@ RSpec.describe 'CreateBookmarkService', type: :model do
     expect(user2.bookmarks.count).to eq(0)
 
     # action
-    CreateBookmarkService.new(user2, user1).perform
-    answer = CreateBookmarkService.new(user2, user1).perform
+    Bookmarks::CreatingService.new(user2, user1).perform
+    answer = Bookmarks::CreatingService.new(user2, user1).perform
 
     # check
     expect(user1.bookmarks.count).to eq(0)

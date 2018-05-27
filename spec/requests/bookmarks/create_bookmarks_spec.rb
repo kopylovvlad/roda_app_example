@@ -23,7 +23,7 @@ RSpec.describe 'Create Bookmark', type: :request do
       # prepare
       user1 = FactoryBot.create(:active_user)
       user2 = FactoryBot.create(:active_user)
-      CreateBookmarkService.new(user1, user2).perform
+      Bookmarks::CreatingService.new(user1, user2).perform
 
       # action
       sign_in(user1)

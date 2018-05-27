@@ -27,12 +27,12 @@ RSpec.describe 'Index Bookmarks', type: :request do
       user1 = FactoryBot.create(:active_user)
       user2 = FactoryBot.create(:active_user)
       3.times do
-        CreateBookmarkService
+        Bookmarks::CreatingService
           .new(user1, FactoryBot.create(:active_user))
           .perform
       end
       2.times do
-        CreateBookmarkService
+        Bookmarks::CreatingService
           .new(user2, FactoryBot.create(:active_user))
           .perform
       end
@@ -55,7 +55,7 @@ RSpec.describe 'Index Bookmarks', type: :request do
       # prepare
       user1 = FactoryBot.create(:active_user)
       3.times do
-        CreateBookmarkService
+        Bookmarks::CreatingService
           .new(user1, FactoryBot.create(:active_user))
           .perform
       end
