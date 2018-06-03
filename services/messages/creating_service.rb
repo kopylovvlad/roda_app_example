@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: test
 module Messages
   class CreatingService
     def initialize(chat = nil, current_user_id = nil, text = '')
@@ -17,7 +16,18 @@ module Messages
 
     def check_args
       return false unless @chat.nil? or @current_user_id.nil?
-      return ServiceAnswer.new(false, nil, { main_user: 'must exist', another_user: 'must exist' })
+      return ServiceAnswer.new(false, nil, generate_errors)
+    end
+
+    def generate_errors
+      hash = {}
+      if @chat.nil?
+        hash[:chat] = 'must exist'
+      end
+      if @current_user_id.nil?
+        hash[:current_user_id] = 'must exist'
+      end
+      hash
     end
 
     def create_message
