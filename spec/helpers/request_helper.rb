@@ -19,6 +19,12 @@ module RequestHelper
     JSON.parse(response.body)
   end
 
+  # TODO: replace all the things
+  def check_response
+    expect(response.code).to eq('200')
+    expect(response.content_type).to eq('application/json')
+  end
+
   def sign_in(resource)
     login_as(resource)
   end

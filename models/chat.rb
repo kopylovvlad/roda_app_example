@@ -18,6 +18,14 @@ class Chat
   embeds_many :messages
   accepts_nested_attributes_for :messages , :autosave => true
 
+  def short_json
+    {
+      _id: id,
+      user1_id: user1_id,
+      user2_id: user2_id
+    }
+  end
+
   private
 
   def check_ids
@@ -25,7 +33,6 @@ class Chat
     errors.add(:user1_id, 'Must be uniq')
   end
 
-  # TODO: test
   def check_users
     unless User.find(user1_id).present?
       errors.add(:user1_id, 'User must exist')
