@@ -19,7 +19,7 @@ RSpec.describe 'Index Chat::Messags', type: :request do
     )
     10.times do |i|
       Messages::CreatingService
-        .new(chat1, user1, "text: #{i}")
+        .new(chat1, user1.id.to_s, "text: #{i}")
         .perform
     end
     chat2 = Chat.create!(
@@ -28,7 +28,7 @@ RSpec.describe 'Index Chat::Messags', type: :request do
     )
     5.times do |i|
       Messages::CreatingService
-        .new(chat2, user1, "text: #{i}")
+        .new(chat2, user1.id.to_s, "text: #{i}")
         .perform
     end
     sign_in(user1)

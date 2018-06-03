@@ -11,7 +11,8 @@ rackup
 ```
 
 ## TODO:
-* add messages
+* add how to divide chats and messages ???
+* add comments with urls
 * endpoints documentation inside README
 * is all spec-file with '_spec' ?
 * rubocop fixs -a

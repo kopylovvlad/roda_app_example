@@ -45,7 +45,7 @@ module Messages
     def init_user_id
       if @chat.user1_id == @current_user_id
         @chat.user2_id
-      elsif @chat.user2_id
+      elsif @chat.user2_id == @current_user_id
         @chat.user1_id
       end
     end

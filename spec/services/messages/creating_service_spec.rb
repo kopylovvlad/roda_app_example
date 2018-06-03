@@ -10,13 +10,17 @@ RSpec.describe 'Messages::CreatingService', type: :model do
 
     # action
     answer = Messages::CreatingService
-             .new(chat, user1.id, 'hello!')
+             .new(chat, user1.id.to_s, 'hello!')
              .perform
 
     # check
     expect(answer).to be_instance_of(::ServiceAnswer)
     expect(answer.success?).to eq(true)
     expect(answer.item).to be_instance_of(Message)
+    message = answer.item
+    expect(message.to_user_id).to eq(user2.id.to_s)
+    expect(message.text).to eq('hello!')
+    expect(message.viewed).to eq(false)
     expect(chat.messages.count).to eq(m_count + 1)
   end
 
