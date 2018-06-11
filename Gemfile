@@ -18,6 +18,7 @@ gem 'puma', '~> 3.0'
 gem 'rack'
 gem 'rack-test'
 gem 'roda'
+gem 'roda-route_list'
 gem 'simplecov'
 gem 'warden'
 

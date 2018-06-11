@@ -17,6 +17,8 @@ class App < Roda
 
   route do |r|
     r.multi_route
+
+    # route: GET /
     r.root do
       { succes: true, message: 'hello' }
     end

@@ -6,8 +6,9 @@ module RegistrationApp
   def self.included(base)
     base.class_eval do
       route 'registration' do |r|
-        r.post do
 
+        # route: POST /registration
+        r.post do
           user = User.new(reg_params(r))
           if user.valid? and user.save
             response.status = 201

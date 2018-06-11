@@ -7,6 +7,7 @@ module ChatApp
         env['warden'].authenticate!
         @current_user = env['warden'].user
 
+        # route: GET /chats
         r.get do
           chats = Chats::GetForUserService.perform(@current_user.id.to_s)
           items = paginate_yeild(r, chats)
@@ -17,6 +18,7 @@ module ChatApp
           }
         end
 
+        # route: POST /chats
         r.post do
           another_user = User.find(r.params['user_id'])
           answer = Chats::CreatingService

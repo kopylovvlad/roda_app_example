@@ -9,7 +9,9 @@ module ProfileApp
         env['warden'].authenticate!
 
         r.is do
+
           # search profiles
+          # route: GET /profiles
           r.get do
             @users = Users::SearchService.perform(search_params(r))
             @users = paginate_yeild(r, @users)
@@ -26,11 +28,13 @@ module ProfileApp
           r.halt(404) unless @user.present?
 
           # show profile
+          # route: GET /profiles/:id
           r.get do
             { success: true, user: @user }
           end
 
           # update own profile
+          # route: PATCH /profiles/:id
           r.patch do
             unless env['warden'].user.id == @user.id
               r.halt(405, {'Content-Type'=>'application/json'}, {}.to_json)

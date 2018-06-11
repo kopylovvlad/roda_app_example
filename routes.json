@@ -1,0 +1,116 @@
+[
+  {
+    "path": "/",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/bookmarks",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/bookmarks",
+    "methods": [
+      "POST"
+    ]
+  },
+  {
+    "path": "/bookmarks/:id",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/bookmarks/:id",
+    "methods": [
+      "DELETE"
+    ]
+  },
+  {
+    "path": "/profiles",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/profiles/:id",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/profiles/:id",
+    "methods": [
+      "PATCH"
+    ]
+  },
+  {
+    "path": "/registration",
+    "methods": [
+      "POST"
+    ]
+  },
+  {
+    "path": "/sessions",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/sessions",
+    "methods": [
+      "POST"
+    ]
+  },
+  {
+    "path": "/sessions",
+    "methods": [
+      "DELETE"
+    ]
+  },
+  {
+    "path": "/chats",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/chats",
+    "methods": [
+      "POST"
+    ]
+  },
+  {
+    "path": "/chats/:user_id/messages/last",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/chats/:user_id/messages/viewed",
+    "methods": [
+      "PUT"
+    ]
+  },
+  {
+    "path": "/chats/:user_id/messages/unviewed_count",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/chats/:user_id/messages",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/chats/:user_id/messages",
+    "methods": [
+      "POST"
+    ]
+  }
+]

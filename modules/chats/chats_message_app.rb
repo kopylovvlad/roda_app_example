@@ -14,16 +14,20 @@ module ChatsMessageApp
 
         # must be before .get, .post
         r.on 'last' do
+
+          # get one last message
+          # route: GET /chats/:user_id/messages/last
           r.get do
-            # get one last message
             message = @chat.messages.ordered.first
             { success: true, message: message }
           end
         end
 
         r.on 'viewed' do
+
+          # check all messages as viewed
+          # route: PUT /chats/:user_id/messages/viewed
           r.put do
-            # check all messages as viewed
             Messages::ViewedService
               .perform(@chat, @current_user_id)
             { success: true }
@@ -31,16 +35,19 @@ module ChatsMessageApp
         end
 
         r.on 'unviewed_count' do
+
+          # get unviewed messages count
+          # route: GET /chats/:user_id/messages/unviewed_count
           r.get do
-            # get unviewed messages count
             count = Messages::UnviewedCountService
                     .perform(@chat, @current_user_id)
             { success: true, unviewed_count: count }
           end
         end
 
+        # list messages
+        # route: GET /chats/:user_id/messages
         r.get do
-          # list messages
           messages = paginate_yeild(r, @chat.messages.ordered)
           {
             success: true,
@@ -50,8 +57,9 @@ module ChatsMessageApp
           }
         end
 
+        # create new message
+        # route: POST /chats/:user_id/messages
         r.post do
-          # create new message
           answer = Messages::CreatingService
                     .new(@chat, @current_user_id, r.params['text'])
                     .perform

@@ -10,12 +10,15 @@ rackup
 ./bin/console
 ```
 
+## Generate routes
+```bash
+./bin/parse_routes.sh
+```
+Routes-list are inside: routes.json
+
 ## TODO:
-* add comments with urls
-* password changing has bugs
 * endpoints documentation inside README
-* is all spec-file with '_spec' ?
 * rubocop fixs -a
 * seeds
-* test
+* test wrk
 * post in Medium and RubyFlow

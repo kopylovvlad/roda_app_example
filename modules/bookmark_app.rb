@@ -9,7 +9,9 @@ module BookmarkApp
         env['warden'].authenticate!
 
         r.is do
+
           # index my bookmarks
+          # route: GET /bookmarks
           r.get do
             items = env['warden'].user.bookmarks
             items = paginate_yeild(r, items)
@@ -21,6 +23,7 @@ module BookmarkApp
           end
 
           # create a bookmark
+          # route: POST /bookmarks
           r.post do
             user = User.find(r.params['user_id'])
             r.halt(404) unless user.present?
@@ -41,11 +44,13 @@ module BookmarkApp
           r.halt(404) unless @bookmark.present?
 
           # show own bookmark
+          # route: GET /bookmarks/:id
           r.get do
             { success: true, bookmark: @bookmark }
           end
 
           # delete a bookmark
+          # route: DELETE /bookmarks/:id
           r.delete do
             @bookmark.destroy
             { success: true }
