@@ -15,7 +15,7 @@ module Chats
 
     def check_arg
       return false if @current_user.is_a?(User) and @another_user.is_a?(User)
-      return ::ServiceAnswer.new(false, nil, generate_errors)
+      ::ServiceAnswer.new(false, nil, generate_errors)
     end
 
     def creating
@@ -30,12 +30,8 @@ module Chats
     def generate_errors
       msg = 'must be instance of User'
       hash = {}
-      unless @current_user.is_a?(User)
-        hash[:current_user] = msg
-      end
-      unless @another_user.is_a?(User)
-        hash[:another_user] = msg
-      end
+      hash[:current_user] = msg unless @current_user.is_a?(User)
+      hash[:another_user] = msg unless @another_user.is_a?(User)
       hash
     end
   end

@@ -15,7 +15,7 @@ module Bookmarks
 
     def check_users
       return false unless @main_user.nil? or @another_user.nil?
-      return ServiceAnswer.new(false, nil, { main_user: 'must exist', another_user: 'must exist' })
+      ServiceAnswer.new(false, nil, main_user: 'must exist', another_user: 'must exist')
     end
 
     def create_bookmark
