@@ -22,8 +22,8 @@ module ChatApp
         r.post do
           another_user = User.find(r.params['user_id'])
           answer = Chats::CreatingService
-                    .new(@current_user, another_user)
-                    .perform
+                   .new(@current_user, another_user)
+                   .perform
 
           if answer.success?
             { success: true, chat: answer.item, errors: {} }

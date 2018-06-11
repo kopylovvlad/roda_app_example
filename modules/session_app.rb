@@ -7,7 +7,6 @@ module SessionApp
     base.class_eval do
       route 'sessions' do |r|
         r.is do
-
           # route: GET /sessions
           r.get do
             { user: env['warden'].user }

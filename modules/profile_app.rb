@@ -9,7 +9,6 @@ module ProfileApp
         env['warden'].authenticate!
 
         r.is do
-
           # search profiles
           # route: GET /profiles
           r.get do
@@ -37,7 +36,7 @@ module ProfileApp
           # route: PATCH /profiles/:id
           r.patch do
             unless env['warden'].user.id == @user.id
-              r.halt(405, {'Content-Type'=>'application/json'}, {}.to_json)
+              r.halt(405, { 'Content-Type' => 'application/json' }, {}.to_json)
             end
 
             if @user.update_attributes(user_params(r))

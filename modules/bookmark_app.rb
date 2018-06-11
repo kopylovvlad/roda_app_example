@@ -9,7 +9,6 @@ module BookmarkApp
         env['warden'].authenticate!
 
         r.is do
-
           # index my bookmarks
           # route: GET /bookmarks
           r.get do

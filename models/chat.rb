@@ -5,7 +5,7 @@ class Chat
   include Mongoid::Timestamps
   store_in collection: 'chats'
 
-  scope :ordered, ->{ reorder(updated_at: :desc) }
+  scope :ordered, -> { reorder(updated_at: :desc) }
 
   field :user1_id, type: String
   field :user2_id, type: String
@@ -16,7 +16,7 @@ class Chat
   validate :is_exist?
 
   embeds_many :messages
-  accepts_nested_attributes_for :messages , :autosave => true
+  accepts_nested_attributes_for :messages, autosave: true
 
   def short_json
     {
@@ -34,12 +34,8 @@ class Chat
   end
 
   def check_users
-    unless User.find(user1_id).present?
-      errors.add(:user1_id, 'User must exist')
-    end
-    unless User.find(user2_id).present?
-      errors.add(:user2_id, 'User must exist')
-    end
+    errors.add(:user1_id, 'User must exist') unless User.find(user1_id).present?
+    errors.add(:user2_id, 'User must exist') unless User.find(user2_id).present?
   end
 
   def is_exist?

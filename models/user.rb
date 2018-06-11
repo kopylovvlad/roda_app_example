@@ -7,10 +7,10 @@ class User
   attr_accessor :password, :password_confirmation
   store_in collection: 'users'
 
-  scope :active, ->{ where(active: true) }
-  scope :inactive, ->{ where(active: false) }
-  scope :male, ->{ where(gender: 'male') }
-  scope :female, ->{ where(gender: 'female') }
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+  scope :male, -> { where(gender: 'male') }
+  scope :female, -> { where(gender: 'female') }
 
   field :first_name, type: String
   field :last_name,  type: String
@@ -39,7 +39,7 @@ class User
   before_save :save_password
 
   embeds_many :bookmarks
-  accepts_nested_attributes_for :bookmarks , :autosave => true
+  accepts_nested_attributes_for :bookmarks, autosave: true
 
   def full_name
     [first_name, last_name].join(' ').strip

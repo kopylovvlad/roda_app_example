@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - rspec/**/*
+
+Style/AndOr:
+  Enabled: false

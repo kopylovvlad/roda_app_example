@@ -4,9 +4,9 @@ class Message
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  scope :ordered, ->{ reorder(created_at: :desc) }
-  scope :by_user, ->(user_id){ where(to_user_id: user_id) }
-  scope :unviewed, ->{ where(viewed: false) }
+  scope :ordered, -> { reorder(created_at: :desc) }
+  scope :by_user, ->(user_id) { where(to_user_id: user_id) }
+  scope :unviewed, -> { where(viewed: false) }
 
   field :to_user_id, type: String
   field :text, type: String

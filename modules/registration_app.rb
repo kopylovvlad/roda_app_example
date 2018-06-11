@@ -6,7 +6,6 @@ module RegistrationApp
   def self.included(base)
     base.class_eval do
       route 'registration' do |r|
-
         # route: POST /registration
         r.post do
           user = User.new(reg_params(r))
@@ -25,7 +24,7 @@ module RegistrationApp
   private
 
   def reg_params(r)
-    return r.params.slice(
+    r.params.slice(
       'first_name', 'last_name', 'email', 'height', 'weight',
       'gender', 'city', 'birthdate', 'password', 'password_confirmation'
     )

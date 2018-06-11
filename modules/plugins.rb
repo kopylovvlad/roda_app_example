@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # https://github.com/jeremyevans/roda/tree/master/lib/roda/plugins
 
 module Plugins

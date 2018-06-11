@@ -14,7 +14,6 @@ module ChatsMessageApp
 
         # must be before .get, .post
         r.on 'last' do
-
           # get one last message
           # route: GET /chats/:user_id/messages/last
           r.get do
@@ -24,7 +23,6 @@ module ChatsMessageApp
         end
 
         r.on 'viewed' do
-
           # check all messages as viewed
           # route: PUT /chats/:user_id/messages/viewed
           r.put do
@@ -35,7 +33,6 @@ module ChatsMessageApp
         end
 
         r.on 'unviewed_count' do
-
           # get unviewed messages count
           # route: GET /chats/:user_id/messages/unviewed_count
           r.get do
@@ -61,8 +58,8 @@ module ChatsMessageApp
         # route: POST /chats/:user_id/messages
         r.post do
           answer = Messages::CreatingService
-                    .new(@chat, @current_user_id, r.params['text'])
-                    .perform
+                   .new(@chat, @current_user_id, r.params['text'])
+                   .perform
 
           if answer.success?
             { success: true, message: answer.item }

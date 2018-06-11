@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module PaginationHandler
-  MAX_ITEMS = 50.freeze
+  MAX_ITEMS = 50
 
   private
 
