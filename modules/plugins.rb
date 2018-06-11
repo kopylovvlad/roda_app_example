@@ -12,6 +12,7 @@ module Plugins
       plugin :middleware
       plugin :run_handler
       plugin :halt
+      plugin :shared_vars
       plugin :error_handler do |e|
         puts 'error_handler:'
         puts e.inspect
