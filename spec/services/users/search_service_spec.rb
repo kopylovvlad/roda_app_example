@@ -209,32 +209,11 @@ RSpec.describe 'Users::SearchService', type: :model do
 
       users = Users::SearchService.perform('id' => user.id.to_s)
       expect(users.size).to eq(0)
-      users = Users::SearchService.perform('id' => [user.id.to_s])
-      expect(users.size).to eq(0)
 
       user.update_attributes(active: true)
 
       users = Users::SearchService.perform('id' => user.id.to_s)
       expect(users.size).to eq(1)
-      users = Users::SearchService.perform('id' => [user.id.to_s])
-      expect(users.size).to eq(1)
-    end
-
-    it 'should return active users by ids' do
-      FactoryBot.create_list(:user, 2)
-      FactoryBot.create_list(:active_user, 3)
-      user1 = FactoryBot.create(:user, active: false)
-      user2 = FactoryBot.create(:user, active: false)
-      ids = [user1.id.to_s, user2.id.to_s]
-
-      users = Users::SearchService.perform('id' => ids)
-      expect(users.size).to eq(0)
-
-      user1.update_attributes(active: true)
-      user2.update_attributes(active: true)
-
-      users = Users::SearchService.perform('id' => ids)
-      expect(users.size).to eq(2)
     end
   end
 end
