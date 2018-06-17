@@ -2,49 +2,30 @@
 
 module Users
   module SearchService
+    PARAMS_MAP = {
+      'id' => ->(value) { { id: value } },
+      'first_name' => ->(value) { { 'first_name' => value } },
+      'last_name' => ->(value) { { 'last_name' => value } },
+      'email' => ->(value) { { 'email' => value } },
+      'city' => ->(value) { { 'city' => value } },
+      'height_after' => ->(value) { { height: { :$gt => value } } },
+      'height_before' => ->(value) { { height: { :$lt => value } } },
+      'weight_after' => ->(value) { { weight: { '$gt' => value } } },
+      'weight_before' => ->(value) { { weight: { '$lt' => value } } },
+      'gender' => ->(value) { { gender: value } },
+      'birthdate_before' => ->(value) { { birthdate: { :$lte => Date.parse(value) } } },
+      'birthdate_after' => ->(value) { { birthdate: { :$gte => Date.parse(value) } } }
+    }.freeze
+
     def self.perform(params = {})
-      scope = ::User.active
+      where_params = {}
 
-      scope = scope.find(params['id']).to_a if params['id'].present?
-
-      %w[first_name last_name email city].each do |item|
+      PARAMS_MAP.keys.each do |item|
         next unless params[item].present?
-        scope = scope.where(item => params[item])
+        where_params.merge!(PARAMS_MAP[item][params[item]])
       end
 
-      if params['height_after'].present?
-        scope = scope.where(height: { :$gt => params['height_after'] })
-      end
-
-      if params['height_before'].present?
-        scope = scope.where(height: { :$lt => params['height_before'] })
-      end
-
-      if params['weight_after'].present?
-        scope = scope.where(weight: { '$gt' => params['weight_after'] })
-      end
-
-      if params['weight_before'].present?
-        scope = scope.where(weight: { '$lt' => params['weight_before'] })
-      end
-
-      if params['gender'].present? and %w[male female].include?(params['gender'])
-        scope = scope.where(gender: params['gender'])
-      end
-
-      if params['birthdate_before'].present?
-        scope = scope.where(
-          birthdate: { :$lte => Date.parse(params['birthdate_before']) }
-        )
-      end
-
-      if params['birthdate_after'].present?
-        scope = scope.where(
-          birthdate: { :$gte => Date.parse(params['birthdate_after']) }
-        )
-      end
-
-      scope
+      ::User.active.where(where_params)
     end
   end
 end
