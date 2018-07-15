@@ -42,6 +42,7 @@ module ProfileApp
             if @user.update_attributes(user_params(r))
               { success: true, user: @user }
             else
+              response.status = 400
               { success: false, errors: @user.errors }
             end
           end

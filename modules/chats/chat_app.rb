@@ -28,6 +28,7 @@ module ChatApp
           if answer.success?
             { success: true, chat: answer.item, errors: {} }
           else
+            response.status = 400
             { success: false, chat: nil, errors: answer.errors }
           end
         end

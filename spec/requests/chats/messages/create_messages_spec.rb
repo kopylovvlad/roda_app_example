@@ -74,7 +74,8 @@ RSpec.describe 'Create Chat::Messags', type: :request do
       )
 
       # check
-      check_response
+      expect(response.code).to eq('400')
+      expect(response.content_type).to eq('application/json')
       expect(json['success']).to eq(false)
       expect(json['errors'].keys.size).to be > 0
       expect(Chat.find(chat.id.to_s).messages.count).to eq(2)

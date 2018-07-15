@@ -10,7 +10,7 @@ end
 gem 'bcrypt'
 gem 'dotenv'
 gem 'encryption'
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'kaminari-core'
 gem 'kaminari-mongoid'
 gem 'mongoid'
@@ -23,8 +23,8 @@ gem 'simplecov'
 gem 'warden'
 
 group :development do
-  gem 'rubocop'
   gem 'pry'
+  gem 'rubocop'
 end
 
 group :test do

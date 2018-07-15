@@ -30,7 +30,7 @@ RSpec.describe 'Create Bookmark', type: :request do
       post('/bookmarks', user_id: user2.id.to_s)
 
       # check
-      expect(response.code).to eq('200')
+      expect(response.code).to eq('400')
       expect(response.content_type).to eq('application/json')
       expect(json['success']).to eq(false)
       expect(json['errors']).to_not eq(nil)

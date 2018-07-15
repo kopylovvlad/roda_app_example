@@ -64,6 +64,7 @@ module ChatsMessageApp
           if answer.success?
             { success: true, message: answer.item }
           else
+            response.status = 400
             { success: false, errors: answer.errors }
           end
         end
