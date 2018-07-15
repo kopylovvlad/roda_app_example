@@ -14,8 +14,10 @@ class App < Roda
   include ProfileApp
   include BookmarkApp
   include ChatBaseApp
+  include SwaggerApp
 
   route do |r|
+
     r.multi_route
 
     # route: GET /

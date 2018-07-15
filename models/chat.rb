@@ -7,6 +7,21 @@ class Chat
 
   scope :ordered, -> { reorder(updated_at: :desc) }
 
+  # swagger
+  include Swagger::Blocks
+  swagger_schema :Chat do
+    key :required, [:user1_id, :user2_id]
+    property :id do
+      key :type, :string
+    end
+    property :user1_id do
+      key :type, :string
+    end
+    property :user2_id do
+      key :type, :string
+    end
+  end
+
   field :user1_id, type: String
   field :user2_id, type: String
 

@@ -90,6 +90,8 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    swagger-blocks (2.0.2)
+    swaggerui_local (0.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -120,10 +122,12 @@ DEPENDENCIES
   rspec
   rubocop
   simplecov
+  swagger-blocks
+  swaggerui_local
   warden
 
 RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

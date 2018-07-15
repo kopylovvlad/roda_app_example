@@ -7,6 +7,42 @@ class User
   attr_accessor :password, :password_confirmation
   store_in collection: 'users'
 
+  # swagger
+  include Swagger::Blocks
+  swagger_schema :User do
+    key :required, [:email, :first_name, :last_name]
+    property :id do
+      key :type, :string
+    end
+    property :first_name do
+      key :type, :string
+    end
+    property :last_name do
+      key :type, :string
+    end
+    property :email do
+      key :type, :string
+    end
+    property :height do
+      key :type, :integer
+    end
+    property :weight do
+      key :type, :integer
+    end
+    property :gender do
+      key :type, :string
+    end
+    property :city do
+      key :type, :string
+    end
+    property :birthdate do
+      key :type, :date
+    end
+    property :active do
+      key :type, :booleane
+    end
+  end
+
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :male, -> { where(gender: 'male') }

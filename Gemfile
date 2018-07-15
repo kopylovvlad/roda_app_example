@@ -20,6 +20,8 @@ gem 'rack-test'
 gem 'roda'
 gem 'roda-route_list'
 gem 'simplecov'
+gem 'swagger-blocks'
+gem 'swaggerui_local'
 gem 'warden'
 
 group :development do

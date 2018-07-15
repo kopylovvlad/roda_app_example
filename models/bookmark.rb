@@ -4,6 +4,21 @@ class Bookmark
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  # swagger
+  include Swagger::Blocks
+  swagger_schema :Bookmark do
+    key :required, [:user_id, :user_name]
+    property :id do
+      key :type, :string
+    end
+    property :user_id do
+      key :type, :string
+    end
+    property :user_name do
+      key :type, :string
+    end
+  end
+
   field :user_id, type: String
   field :user_name, type: String
 
