@@ -17,6 +17,11 @@ module SwaggerModule
   end
 
   def self.json
-    Swagger::Blocks.build_root_json([User, Message, Chat, Bookmark, self])
+    Swagger::Blocks.build_root_json([
+      User, Message, Chat, Bookmark,
+      SwaggerApp, SessionApp, RegistrationApp, ProfileApp, BookmarkApp,
+      ChatApp, ChatsMessageApp,
+      self
+    ])
   end
 end
