@@ -8,6 +8,7 @@ require 'swaggerui_local'
 
 Dir['./config/*.rb'].each { |file| require file }
 Dir['./lib/*.rb'].each { |file| require file }
+Dir['./docs/*.rb'].each { |file| require file }
 Dir['./handlers/*.rb'].each { |file| require file }
 Dir['./modules/*.rb'].each { |file| require file }
 Dir['./modules/**/*.rb'].each { |file| require file }

@@ -24,6 +24,7 @@ Routes-list are inside: routes.json
 
 ## Folder Structure
 
+- docs/ - swagger documentation
 - handlers/ - handlers for modules
 - models/ - here is models
 - modules/ - here is parts of main app
