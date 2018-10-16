@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require "./core"
+
+# delete all data from DB
+Message.delete_all
+Chat.delete_all
+Bookmark.delete_all
+User.delete_all
+
+# create data for DB
+# users
+ivan = User.new(
+  first_name: 'Ivan',
+  last_name: 'ivanov',
+  email: 'ivanovivan@tmail.com',
+  height: '180',
+  weight: '80',
+  gender: 'male',
+  city: 'Moscow',
+  birthdate: Date.current,
+  password: '1234567890',
+  password_confirmation: '1234567890'
+)
+ivan.save!
+
+john = User.new(
+  first_name: 'John',
+  last_name: 'Smith',
+  email: 'johnsmith@tmail.com',
+  height: '180',
+  weight: '80',
+  gender: 'male',
+  city: 'NY',
+  birthdate: Date.current,
+  password: '1234567890',
+  password_confirmation: '1234567890'
+)
+john.save!
+
+# bookmarks
+# chats
+# message

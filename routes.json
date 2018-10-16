@@ -72,6 +72,18 @@
     ]
   },
   {
+    "path": "/swagger_json",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "path": "/swagger_ui",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
     "path": "/chats",
     "methods": [
       "GET"

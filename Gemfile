@@ -26,7 +26,8 @@ gem 'warden'
 
 group :development do
   gem 'pry'
-  gem 'rubocop'
+  # gem 'rubocop'
+  gem 'solargraph'
 end
 
 group :test do

@@ -14,13 +14,28 @@ rackup
 ./bin/console
 ```
 
+## Seeds
+
+```bash
+./bin/seeds
+```
+
 ## Generate routes
 
 ```bash
 ./bin/parse_routes.sh
 ```
 
-Routes-list are inside: routes.json
+## API Documentation
+
+```
+# run server
+rackup
+# see swagger documenation
+open http://localhost:9292/swagger_ui
+```
+
+Also routes-list are inside: routes.json
 
 ## Folder Structure
 
@@ -31,10 +46,3 @@ Routes-list are inside: routes.json
 - services/ - here is services
 - app.rb - Main application
 - init.rb - initializations file
-
-## TODO:
-
-- endpoints documentation inside README
-- seeds
-- test wrk
-- post in Medium and RubyFlow
